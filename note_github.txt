@@ -1,6 +1,5 @@
 RMUTR Raspberry Pi to PLC V1 Python 
 
-
 GitHub 
 ------------------------------------------------------------------------------- 
 1 https://github.com 
@@ -22,3 +21,7 @@ GitHub
     Git Bash>git add . 
     Git Bash>git commit -m "[Comment]" 
     Git Bash>git push 
+6 Rollback to [hashid] commit point 
+    Git Bash>git checkout [hashid] 
+ 
+ 
