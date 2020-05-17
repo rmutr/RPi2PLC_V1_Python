@@ -1,4 +1,4 @@
-import smbus
+import smbus2
 import time
 
 LED1 = 0x01
@@ -10,7 +10,7 @@ LED6 = 0X20
 LED7 = 0X40
 LED8 = 0X80
 
-bus = smbus.SMBus(1)
+bus = smbus2.SMBus(1)
 while True:
     bus.write_byte(0x20, LED1)
     print("O")
@@ -36,8 +36,8 @@ while True:
     bus.write_byte(0x20, LED8)
     print("       O")
     time.sleep(1)
-    
-    
+
+
     bus.write_byte(0x21, LED1)
     time.sleep(1)
     bus.write_byte(0x21, LED2)
