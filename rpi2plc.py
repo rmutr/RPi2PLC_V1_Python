@@ -52,7 +52,7 @@ class R_DAC:
 
 
 #------------------------------------------------------------------------------ 
-do = list() 
+do = [] #<- faster than do = list() 
 
 do.append(R_DO_NPN(0x20, 0)) 
 do.append(R_DO_NPN(0x20, 1)) 
