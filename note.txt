@@ -1,3 +1,0 @@
-pip install RPi.GPIO 
-pip install pysmbus 
-pip install smbus2 
