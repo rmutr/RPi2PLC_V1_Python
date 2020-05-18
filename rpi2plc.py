@@ -53,6 +53,9 @@ class R_DAC:
 
 #------------------------------------------------------------------------------ 
 do = [] #<- faster than do = list() 
+di = [] 
+ao = [] 
+ai = [] 
 
 do.append(R_DO_NPN(0x20, 0)) 
 do.append(R_DO_NPN(0x20, 1)) 
@@ -147,4 +150,5 @@ while True:
 
 #--- Time controller ---------------------------------------------------------- 
   sys_time_controller()
-
+  
+  
