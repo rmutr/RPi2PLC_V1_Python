@@ -23,4 +23,11 @@ GitHub
     Git Bash>git push 
 6 Rollback to [hashid] commit point 
     Git Bash>git checkout [hashid] 
+
+
+Packages 
+------------------------------------------------------------------------------- 
+pip install RPi.GPIO 
+pip install pysmbus 
+pip install smbus2 
  
