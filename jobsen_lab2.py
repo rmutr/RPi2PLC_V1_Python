@@ -6,6 +6,7 @@
 
 
 #------------------------------------------------------------------------------ 
+import smbus2 
 import time 
 
 
@@ -93,6 +94,7 @@ do.append(R_DO_NPN(0x23, 5))
 do.append(R_DO_NPN(0x23, 6)) 
 do.append(R_DO_NPN(0x23, 7)) 
 
+hw_do = smbus2.SMBus(1) 
 
 #------------------------------------------------------------------------------ 
 def sys_communication(): 
@@ -105,9 +107,38 @@ def sys_read_analog_inputs():
   return 0 
 
 def sys_process(): 
+  do[0].toggle() 
   return 0
 
 def sys_write_digital_outputs(): 
+  value_byte = 0 
+
+  if do[0].value == 1: 
+    value_byte += 1 
+
+  if do[1].value == 1: 
+    value_byte += 2 
+
+  if do[2].value == 1: 
+    value_byte += 4 
+
+  if do[3].value == 1: 
+    value_byte += 8 
+
+  if do[4].value == 1: 
+    value_byte += 16 
+
+  if do[5].value == 1: 
+    value_byte += 32 
+
+  if do[6].value == 1: 
+    value_byte += 64 
+
+  if do[7].value == 1: 
+    value_byte += 128 
+
+  hw_do.write_byte(do[0].do_address, (255 - value_byte)) 
+
   return 0 
 
 def sys_write_analog_output(): 
