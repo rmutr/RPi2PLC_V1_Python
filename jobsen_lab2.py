@@ -1,4 +1,4 @@
-#------------------------------------------------------------------------------ 
+  #------------------------------------------------------------------------------ 
 # Project          : RMUTR Raspberry Pi to PLC V1 
 # VSCode Extension : Python 
 # Source           : https://github.com/rmutr/RPi2PLC_V1_Python.git 
@@ -6,7 +6,7 @@
 
 
 #------------------------------------------------------------------------------ 
-import smbus2 
+import smbus 
 import time 
 
 
@@ -94,7 +94,7 @@ do.append(R_DO_NPN(0x23, 5))
 do.append(R_DO_NPN(0x23, 6)) 
 do.append(R_DO_NPN(0x23, 7)) 
 
-hw_do = smbus2.SMBus(1) 
+hw_do = smbus.SMBus(1) 
 
 #------------------------------------------------------------------------------ 
 def sys_communication(): 
@@ -116,7 +116,7 @@ def sys_write_digital_outputs():
   if do[0].value == 1: 
     value_byte += 1 
 
-  if do[1].value == 1: 
+  if do[1].value == 1 : 
     value_byte += 2 
 
   if do[2].value == 1: 
