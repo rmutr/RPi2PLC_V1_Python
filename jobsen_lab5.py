@@ -264,27 +264,7 @@ def sys_process():
   #for bdo in do: 
   #  bdo.toggle() 
  
-  #do[0].value = di[0].value
-
-  if (di[0].value == 1):
-    do[0].value = 1
-  else:
-    do[0].value = 0
-
-  if (di[1].value == 1):
-    do[1].value = 1
-  else:
-    do[1].value = 0
-
-  if (di[2].value == 1):
-    do[2].value = 1
-  else:
-    do[2].value = 0
-
-  if (di[3].value == 1):
-    do[3].value = 1
-  else:
-    do[3].value = 0
+  do[0].value = di[0].value
 
   return 0
 
