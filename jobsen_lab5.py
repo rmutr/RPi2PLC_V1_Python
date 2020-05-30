@@ -103,41 +103,41 @@ di.append(R_DI_NPN(0x23, 5))
 di.append(R_DI_NPN(0x23, 6)) 
 di.append(R_DI_NPN(0x23, 7)) 
 
-do.append(R_DO_NPN(0x20, 0)) 
-do.append(R_DO_NPN(0x20, 1)) 
-do.append(R_DO_NPN(0x20, 2)) 
-do.append(R_DO_NPN(0x20, 3)) 
-do.append(R_DO_NPN(0x20, 4)) 
-do.append(R_DO_NPN(0x20, 5)) 
-do.append(R_DO_NPN(0x20, 6)) 
-do.append(R_DO_NPN(0x20, 7)) 
+do.append(R_DO_NPN(0x24, 0)) 
+do.append(R_DO_NPN(0x24, 1)) 
+do.append(R_DO_NPN(0x24, 2)) 
+do.append(R_DO_NPN(0x24, 3)) 
+do.append(R_DO_NPN(0x24, 4)) 
+do.append(R_DO_NPN(0x24, 5)) 
+do.append(R_DO_NPN(0x24, 6)) 
+do.append(R_DO_NPN(0x24, 7)) 
 
-do.append(R_DO_NPN(0x21, 0)) 
-do.append(R_DO_NPN(0x21, 1)) 
-do.append(R_DO_NPN(0x21, 2)) 
-do.append(R_DO_NPN(0x21, 3)) 
-do.append(R_DO_NPN(0x21, 4)) 
-do.append(R_DO_NPN(0x21, 5)) 
-do.append(R_DO_NPN(0x21, 6)) 
-do.append(R_DO_NPN(0x21, 7)) 
+do.append(R_DO_NPN(0x25, 0)) 
+do.append(R_DO_NPN(0x25, 1)) 
+do.append(R_DO_NPN(0x25, 2)) 
+do.append(R_DO_NPN(0x25, 3)) 
+do.append(R_DO_NPN(0x25, 4)) 
+do.append(R_DO_NPN(0x25, 5)) 
+do.append(R_DO_NPN(0x25, 6)) 
+do.append(R_DO_NPN(0x25, 7)) 
 
-do.append(R_DO_NPN(0x22, 0)) 
-do.append(R_DO_NPN(0x22, 1)) 
-do.append(R_DO_NPN(0x22, 2)) 
-do.append(R_DO_NPN(0x22, 3)) 
-do.append(R_DO_NPN(0x22, 4)) 
-do.append(R_DO_NPN(0x22, 5)) 
-do.append(R_DO_NPN(0x22, 6)) 
-do.append(R_DO_NPN(0x22, 7)) 
+do.append(R_DO_NPN(0x26, 0)) 
+do.append(R_DO_NPN(0x26, 1)) 
+do.append(R_DO_NPN(0x26, 2)) 
+do.append(R_DO_NPN(0x26, 3)) 
+do.append(R_DO_NPN(0x26, 4)) 
+do.append(R_DO_NPN(0x26, 5)) 
+do.append(R_DO_NPN(0x26, 6)) 
+do.append(R_DO_NPN(0x26, 7)) 
 
-do.append(R_DO_NPN(0x23, 0)) 
-do.append(R_DO_NPN(0x23, 1)) 
-do.append(R_DO_NPN(0x23, 2)) 
-do.append(R_DO_NPN(0x23, 3)) 
-do.append(R_DO_NPN(0x23, 4)) 
-do.append(R_DO_NPN(0x23, 5)) 
-do.append(R_DO_NPN(0x23, 6)) 
-do.append(R_DO_NPN(0x23, 7)) 
+do.append(R_DO_NPN(0x27, 0)) 
+do.append(R_DO_NPN(0x27, 1)) 
+do.append(R_DO_NPN(0x27, 2)) 
+do.append(R_DO_NPN(0x27, 3)) 
+do.append(R_DO_NPN(0x27, 4)) 
+do.append(R_DO_NPN(0x27, 5)) 
+do.append(R_DO_NPN(0x27, 6)) 
+do.append(R_DO_NPN(0x27, 7)) 
 
 bus_dio = smbus.SMBus(1) 
 
@@ -175,7 +175,7 @@ def sys_read_digital_inputs():
   if (di_byte[0] & 0x80) > 0: 
     di[7].value = 1 
 
-  di_byte[1] = (255 - bus_dio.read_byte(di[8].address)) 
+  #di_byte[1] = (255 - bus_dio.read_byte(di[8].address)) 
 
   if (di_byte[1] & 0x01) > 0: 
     di[8].value = 1 
@@ -201,7 +201,7 @@ def sys_read_digital_inputs():
   if (di_byte[1] & 0x80) > 0: 
     di[15].value = 1 
 
-  di_byte[2] = (255 - bus_dio.read_byte(di[16].address)) 
+  #di_byte[2] = (255 - bus_dio.read_byte(di[16].address)) 
 
   if (di_byte[2] & 0x01) > 0: 
     di[16].value = 1 
@@ -227,7 +227,7 @@ def sys_read_digital_inputs():
   if (di_byte[2] & 0x80) > 0: 
     di[23].value = 1 
 
-  di_byte[3] = (255 - bus_dio.read_byte(di[24].address)) 
+  #di_byte[3] = (255 - bus_dio.read_byte(di[24].address)) 
 
   if (di_byte[3] & 0x01) > 0: 
     di[24].value = 1 
@@ -263,6 +263,29 @@ def sys_read_analog_inputs():
 def sys_process(): 
   #for bdo in do: 
   #  bdo.toggle() 
+ 
+  #do[0].value = di[0].value
+
+  if (di[0].value == 1):
+    do[0].value = 1
+  else:
+    do[0].value = 0
+
+  if (di[1].value == 1):
+    do[1].value = 1
+  else:
+    do[1].value = 0
+
+  if (di[2].value == 1):
+    do[2].value = 1
+  else:
+    do[2].value = 0
+
+  if (di[3].value == 1):
+    do[3].value = 1
+  else:
+    do[3].value = 0
+
   return 0
 
 def sys_write_digital_outputs(): 
@@ -320,7 +343,7 @@ def sys_write_digital_outputs():
   if do[15].value == 1: 
     do_byte[1] += 128 
 
-  bus_dio.write_byte(do[8].address, (255 - do_byte[1])) 
+  #bus_dio.write_byte(do[8].address, (255 - do_byte[1])) 
 
   do_byte[2] = 0 
 
@@ -348,7 +371,7 @@ def sys_write_digital_outputs():
   if do[23].value == 1: 
     do_byte[2] += 128 
 
-  bus_dio.write_byte(do[16].address, (255 - do_byte[2])) 
+  #bus_dio.write_byte(do[16].address, (255 - do_byte[2])) 
 
   do_byte[3] = 0 
 
@@ -376,14 +399,14 @@ def sys_write_digital_outputs():
   if do[31].value == 1: 
     do_byte[3] += 128   
 
-  bus_dio.write_byte(do[24].address, (255 - do_byte[3])) 
+  #bus_dio.write_byte(do[24].address, (255 - do_byte[3])) 
 
   return 0 
 
 def sys_write_analog_output(): 
   return 0 
 
-def sys_display():
+def sys_display(): 
   print(str(di[7].value) + str(di[6].value) + str(di[5].value) + str(di[4].value) + " " + str(di[3].value) + str(di[2].value) + str(di[1].value) + str(di[0].value)) 
   return 0 
 

@@ -262,7 +262,11 @@ def sys_read_analog_inputs():
 
 def sys_process(): 
   #for bdo in do: 
-  #  bdo.toggle() 
+    #bdo.toggle() 
+  if (di[0].value == 1):
+    do[1].value = 1
+  else:
+    do[1].value = 0
   return 0
 
 def sys_write_digital_outputs(): 
