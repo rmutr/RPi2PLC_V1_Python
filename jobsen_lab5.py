@@ -15,7 +15,9 @@ class R_DI_NPN:
   def __init__(self, address, bit): 
     self.address = address 
     self.bit = bit 
-    self.value = 0 
+    self.value = 0
+  
+
 
 class R_DO_NPN: 
   def __init__(self, address, bit): 
@@ -48,6 +50,19 @@ class R_DAC:
   def __init__(self, ao_pin): 
     self.ao_pin = ao_pin 
 
+def R_AND(*arg):
+  result = 1
+  for b_AND in arg:
+    if b_AND == 0:
+      result = 0
+  return result
+
+def R_OR(*arg):
+  result = 0
+  for b_OR in arg:
+    if b_OR == 1:
+      result = 1
+  return result
 
 #------------------------------------------------------------------------------ 
 di = [] #<- faster than di = list() 
@@ -263,10 +278,13 @@ def sys_read_analog_inputs():
 def sys_process(): 
   #for bdo in do: 
   #  bdo.toggle() 
- 
-  do[0].value = di[0].value
+  
+  do[0].value = R_AND(di[0].value, di[1].value, di[2].value, di[3].value)
+  do[1].value = R_OR(di[0].value, di[1].value, di[2].value)
+  do[3].value = R_AND(not di[0].value, di[1].value, di[2].value)
 
-  return 0
+  return 0 
+  
 
 def sys_write_digital_outputs(): 
   do_byte[0] = 0 

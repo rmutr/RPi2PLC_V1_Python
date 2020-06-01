@@ -20,8 +20,8 @@ while True:
     X1 = GPIO.input(17)
     X2 = GPIO.input(18)
     
-    A = (X1, X2)
-    f_input(*A)
+    f_input(X1, X2)
+    #f_input(*A)
     
       
     #GPIO.output(21, R_DO)    
