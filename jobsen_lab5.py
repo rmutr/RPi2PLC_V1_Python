@@ -64,6 +64,26 @@ def R_OR(*arg):
       result = 1
   return result
 
+def R_LDN(*arg):
+  result = 1
+  for b_LDN in arg:
+    if b_LDN == 0:
+      result = 0
+  return result
+
+def R_ANDN(*arg):
+  result = 1
+  for b_ANDN in arg:
+    if b_ANDN == 0:
+      result = 0
+  return result
+
+def R_ORN(*arg):
+  result = 0
+  for b_ORN in arg:
+    if b_ORN == 1:
+      result = 1
+  return result
 #------------------------------------------------------------------------------ 
 di = [] #<- faster than di = list() 
 do = [] 
@@ -277,12 +297,13 @@ def sys_read_analog_inputs():
 
 def sys_process(): 
   #for bdo in do: 
-  #  bdo.toggle() 
-  
-  do[0].value = R_AND(di[0].value, di[1].value, di[2].value, di[3].value)
-  do[1].value = R_OR(di[0].value, di[1].value, di[2].value)
-  do[3].value = R_AND(not di[0].value, di[1].value, di[2].value)
+  #  bdo.toggle()
 
+  do[0].value = R_AND(di[0].value, di[1].value, di[2].value)
+  do[1].value = R_OR(di[0].value, di[1].value, di[2].value)
+  do[2].value = R_LDN(not di[0].value, di[1].value, di[2].value)
+  do[0].value = R_LDN(di[0].value, not di[1].value, not di[2].value)
+  do[1].value = R_OR(not di[0].value, not di[1].value, not di[2].value)
   return 0 
   
 
