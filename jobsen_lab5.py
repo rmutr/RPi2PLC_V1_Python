@@ -302,8 +302,8 @@ def sys_process():
   do[0].value = R_AND(di[0].value, di[1].value, di[2].value)
   do[1].value = R_OR(di[0].value, di[1].value, di[2].value)
   do[2].value = R_LDN(not di[0].value, di[1].value, di[2].value)
-  do[0].value = R_LDN(di[0].value, not di[1].value, not di[2].value)
-  do[1].value = R_OR(not di[0].value, not di[1].value, not di[2].value)
+  do[0].value = R_ANDN(di[0].value, not di[1].value, not di[2].value)
+  do[1].value = R_ORN(not di[0].value, not di[1].value, not di[2].value)
   return 0 
   
 
